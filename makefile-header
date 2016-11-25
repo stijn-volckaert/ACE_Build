@@ -1,0 +1,280 @@
+#=============================================================================
+# makefile-header: Global definitions for Unreal project.
+#
+# Makefiles must define UNREAL_DIR before including makefile-header.
+#
+# Revision history:
+# 	* Created by Mike Danylchuk
+#	* 00/01/22 Daniel Vogel
+#		   - hooked up SDL stuff
+#	* 00/03/22 Daniel Vogel
+#		   - hooked up SDLAudio
+#=============================================================================
+
+SHELL = /bin/sh
+
+# Check MACHTYPE, assume intel if undefined.
+ifndef MACHTYPE
+MACHTYPE = i386
+endif
+
+#-----------------------------------------------------------------------------
+# Configuration.
+#-----------------------------------------------------------------------------
+
+VERSION			= 469
+BUILD			= release
+BUILD_SUBDIR	= $(BUILD)-$(MACHTYPE)
+
+# Release build.
+ifeq ($(BUILD),release)
+BUILD_CXXFLAGS = -O2 -fomit-frame-pointer -march=pentium 
+
+#-D_REENTRANT -D_GNU_SOURCE -D__USE_GNU
+endif
+
+# Debug build.
+ifeq ($(BUILD),debug)
+BUILD_CXXFLAGS = -O2 -D_REENTRANT -ggdb
+endif
+
+#-----------------------------------------------------------------------------
+# Directories.
+#-----------------------------------------------------------------------------
+
+# Core directories.
+CORE_SRC		= $(UNREAL_DIR)/Core/Src
+CORE_INC		= $(UNREAL_DIR)/Core/Inc
+CORE_BUILD		= $(UNREAL_DIR)/Core/$(BUILD_SUBDIR)
+CORE_OUT		= $(UNREAL_DIR)/System
+
+# Engine directories.
+ENGINE_SRC		= $(UNREAL_DIR)/Engine/Src
+ENGINE_INC		= $(UNREAL_DIR)/Engine/Inc
+ENGINE_BUILD		= $(UNREAL_DIR)/Engine/$(BUILD_SUBDIR)
+ENGINE_OUT		= $(UNREAL_DIR)/System
+
+# IpDrv directories.
+IPDRV_SRC		= $(UNREAL_DIR)/IpDrv/Src
+IPDRV_INC		= $(UNREAL_DIR)/IpDrv/Inc
+IPDRV_BUILD		= $(UNREAL_DIR)/IpDrv/$(BUILD_SUBDIR)
+IPDRV_OUT		= $(UNREAL_DIR)/System
+
+# Fire directories.
+FIRE_SRC		= $(UNREAL_DIR)/Fire/Src
+FIRE_INC		= $(UNREAL_DIR)/Fire/Inc
+FIRE_BUILD		= $(UNREAL_DIR)/Fire/$(BUILD_SUBDIR)
+FIRE_OUT		= $(UNREAL_DIR)/System
+
+# Editor directories.
+EDITOR_SRC		= $(UNREAL_DIR)/Editor/Src
+EDITOR_INC		= $(UNREAL_DIR)/Editor/Inc
+EDITOR_BUILD		= $(UNREAL_DIR)/Editor/$(BUILD_SUBDIR)
+EDITOR_OUT		= $(UNREAL_DIR)/System
+
+# UCC directories.
+UCC_SRC			= $(UNREAL_DIR)/UCC/Src
+UCC_INC			= $(UNREAL_DIR)/UCC/Inc
+UCC_BUILD		= $(UNREAL_DIR)/UCC/$(BUILD_SUBDIR)
+UCC_OUT			= $(UNREAL_DIR)/System
+
+# XLaunch directories.
+XLAUNCH_SRC		= $(UNREAL_DIR)/XLaunch/Src
+XLAUNCH_INC		= $(UNREAL_DIR)/XLaunch/Inc
+XLAUNCH_BUILD		= $(UNREAL_DIR)/XLaunch/$(BUILD_SUBDIR)
+XLAUNCH_OUT		= $(UNREAL_DIR)/System
+
+# Render directories.
+RENDER_SRC		= $(UNREAL_DIR)/Render/Src
+RENDER_INC		= $(UNREAL_DIR)/Render/Src
+RENDER_BUILD		= $(UNREAL_DIR)/Render/$(BUILD_SUBDIR)
+RENDER_OUT		= $(UNREAL_DIR)/System
+
+# OpenGLDrv directories.
+OPENGLDRV_SRC		= $(UNREAL_DIR)/OpenGLDrv/Src
+OPENGLDRV_INC		= $(UNREAL_DIR)/OpenGLDrv/Src
+OPENGLDRV_BUILD		= $(UNREAL_DIR)/OpenGLDrv/$(BUILD_SUBDIR)
+OPENGLDRV_OUT		= $(UNREAL_DIR)/System
+
+# XMesaGLDrv directories.
+XMESAGLDRV_SRC		= $(UNREAL_DIR)/XMesaGLDrv/Src
+XMESAGLDRV_INC		= $(UNREAL_DIR)/XMesaGLDrv/Src
+XMESAGLDRV_BUILD	= $(UNREAL_DIR)/XMesaGLDrv/$(BUILD_SUBDIR)
+XMESAGLDRV_OUT		= $(UNREAL_DIR)/System
+
+# XDrv directories.
+XDRV_SRC		= $(UNREAL_DIR)/XDrv/Src
+XDRV_INC		= $(UNREAL_DIR)/XDrv/Inc
+XDRV_BUILD		= $(UNREAL_DIR)/XDrv/$(BUILD_SUBDIR)
+XDRV_OUT		= $(UNREAL_DIR)/System
+
+# SDLGLDrv directories.
+SDLGLDRV_SRC		= $(UNREAL_DIR)/SDLGLDrv/Src
+SDLGLDRV_INC		= $(UNREAL_DIR)/SDLGLDrv/Src
+SDLGLDRV_BUILD		= $(UNREAL_DIR)/SDLGLDrv/$(BUILD_SUBDIR)
+SDLGLDRV_OUT		= $(UNREAL_DIR)/System
+
+# SDLDrv directories.
+SDLDRV_SRC		= $(UNREAL_DIR)/SDLDrv/Src
+SDLDRV_INC		= $(UNREAL_DIR)/SDLDrv/Inc
+SDLDRV_BUILD		= $(UNREAL_DIR)/SDLDrv/$(BUILD_SUBDIR)
+SDLDRV_OUT		= $(UNREAL_DIR)/System
+
+# GlideDrv directories.
+GLIDEDRV_SRC		= $(UNREAL_DIR)/GlideDrv/Src
+GLIDEDRV_INC		= $(UNREAL_DIR)/GlideDrv/Inc
+GLIDEDRV_BUILD		= $(UNREAL_DIR)/GlideDrv/$(BUILD_SUBDIR)
+GLIDEDRV_OUT		= $(UNREAL_DIR)/System
+
+# Unreal audio subsystem directories.
+AUDIO_SRC		= $(UNREAL_DIR)/Audio/Src
+AUDIO_INC		= $(UNREAL_DIR)/Audio/Inc
+AUDIO_BUILD		= $(UNREAL_DIR)/Audio/$(BUILD_SUBDIR)
+AUDIO_OUT		= $(UNREAL_DIR)/System
+
+# Unreal SDLaudio subsystem directories.
+SDLAUDIO_SRC		= $(UNREAL_DIR)/SDLAudio/Src
+SDLAUDIO_INC		= $(UNREAL_DIR)/SDLAudio/Inc
+SDLAUDIO_BUILD		= $(UNREAL_DIR)/SDLAudio/$(BUILD_SUBDIR)
+SDLAUDIO_OUT		= $(UNREAL_DIR)/System
+
+# UWeb
+UWEB_SRC		= $(UNREAL_DIR)/UWeb/Src
+UWEB_INC		= $(UNREAL_DIR)/UWeb/Inc
+UWEB_BUILD		= $(UNREAL_DIR)/UWeb/$(BUILD_SUBDIR)
+UWEB_OUT		= $(UNREAL_DIR)/System
+
+# Null Render
+NULLRENDER_SRC		= $(UNREAL_DIR)/NullRender/Src
+NULLRENDER_INC		= $(UNREAL_DIR)/NullRender/Inc
+NULLRENDER_BUILD	= $(UNREAL_DIR)/NullRender/$(BUILD_SUBDIR)
+NULLRENDER_OUT		= $(UNREAL_DIR)/System
+
+# Source directories.
+ALL_SRC_DIRS 	= $(CORE_INC) $(CORE_SRC) \
+		  $(ENGINE_INC) $(ENGINE_SRC) \
+		  $(IPDRV_INC) $(IPDRV_SRC) \
+		  $(FIRE_INC) $(FIRE_SRC) \
+		  $(UCC_INC) $(UCC_SRC) \
+		  $(RENDER_INC) $(RENDER_SRC) \
+		  $(EDITOR_SRC) $(EDITOR_INC) \
+		  $(OPENGLDRV_SRC) $(OPENGLDRV_INC) \
+		  $(SDLGLDRV_SRC) $(SDLGLDRV_INC) \
+		  $(GLIDEDRV_SRC) $(GLIDEDRV_INC) \
+		  $(XDRV_SRC) $(XDRV_INC) \
+		  $(SDLDRV_SRC) $(SDLDRV_INC) \
+		  $(XLAUNCH_SRC) $(XLAUNCH_INC) \
+		  $(AUDIO_SRC) $(AUDIO_INC) \
+		  $(SDLAUDIO_SRC) $(SDLAUDIO_INC) \
+		  $(UWEB_SRC) $(UWEB_INC) \
+		  $(NULLRENDER_SRC) $(NULLRENDER_INC)
+
+# Backup directory.
+BACKUP_DIR		= $(UNREAL_DIR)/backup
+
+# XWindows libs.
+XLIBS			= -L/usr/X11/lib -L/usr/X11R6/lib -lX11 -lXext -lXmu \
+			  -lXt -lXi -lSM -lICE -lXpm
+
+#XWindows includes.
+XINCLUDES		= -I/usr/X11/include -I/usr/X11R6/include
+
+# SDL libs. (from http://www.devolution.com/~slouken/SDL/faq/FAQ-Linux.html#LINUX_2)
+#SDL_LIBS		= -lSDL
+SDL_LIBS		= $(shell sdl-config --libs)
+SDL_CFLAGS		= $(shell sdl-config --cflags)
+
+# GL libs.
+GLIDEINC		= -I/usr/include/glide
+GLIDELIBS		= -lglide2x
+
+#-----------------------------------------------------------------------------
+# Output files.
+#-----------------------------------------------------------------------------
+
+# Core library
+CORE			= $(CORE_OUT)/Core.so
+CORE_SONAME		= Core.so
+
+# Engine library
+ENGINE			= $(ENGINE_OUT)/Engine.so
+ENGINE_SONAME		= Engine.so
+
+# IpDrv library
+IPDRV			= $(IPDRV_OUT)/IpDrv.so
+IPDRV_SONAME		= IpDrv.so
+
+# Fire library
+FIRE			= $(FIRE_OUT)/Fire.so
+FIRE_SONAME		= Fire.so
+
+# Editor library
+EDITOR			= $(EDITOR_OUT)/Editor.so
+EDITOR_SONAME		= Editor.so
+
+# UCC executable
+UCC			= $(UCC_OUT)/ucc
+
+# XLaunch executable
+XLAUNCH			= $(XLAUNCH_OUT)/UnrealTournament
+
+# Render library
+RENDER			= $(RENDER_OUT)/Render.so
+RENDER_SONAME		= Render.so
+
+# OpenGLDrv library
+OPENGLDRV		= $(OPENGLDRV_OUT)/OpenGLDrv.so
+OPENGLDRV_SONAME	= OpenGLDrv.so
+
+# XMesaGLDrv library
+XMESAGLDRV		= $(XMESAGLDRV_OUT)/XMesaGLDrv.so
+XMESAGLDRV_SONAME	= XMesaGLDrv.so
+
+# XDrv library
+XDRV			= $(XDRV_OUT)/XDrv.so
+XDRV_SONAME		= XDrv.so
+
+# SDLGLDrv library
+SDLGLDRV		= $(SDLGLDRV_OUT)/SDLGLDrv.so
+SDLGLDRV_SONAME		= SDLGLDrv.so
+
+# XDrv library
+SDLDRV			= $(SDLDRV_OUT)/SDLDrv.so
+SDLDRV_SONAME		= SDLDrv.so
+
+# GlideDrv library
+GLIDEDRV		= $(GLIDEDRV_OUT)/GlideDrv.so
+GLIDEDRV_SONAME		= GlideDrv.so
+
+# Audio library
+AUDIO			= $(AUDIO_OUT)/Audio.so
+AUDIO_SONAME		= Audio.so
+
+# Audio library
+SDLAUDIO		= $(SDLAUDIO_OUT)/SDLAudio.so
+SDLAUDIO_SONAME		= SDLAudio.so
+
+# UWeb library
+UWEB			= $(UWEB_OUT)/UWeb.so
+UWEB_SONAME		= UWeb.so
+
+# NullRender library
+NULLRENDER		= $(NULLRENDER_OUT)/NullRender.so
+NULLRENDER_SONAME	= NullRender.so
+
+#-----------------------------------------------------------------------------
+# Standard compiler/linker options.
+#-----------------------------------------------------------------------------
+
+STD_CXX			= gcc-2.95
+STD_CXXFLAGS		= -D__LINUX_X86__ -fno-for-scope $(BUILD_CXXFLAGS) -I/usr/include/i386-linux-gnu/ 
+# -I/usr/include/c++/4.6/bits/ -I/usr/include/c++/4.6/ -I/usr/include/c++/4.6/i686-linux-gnu/ -I/usr/include/c++/4.6/i686-linux-gnu/bits/
+STD_LDFLAGS		= -Wl,-rpath,. -shared 
+STD_LDFLAGSSTATICLIB = 
+
+# -Wl,--traditional-format -Wl,--eh-frame-hdr -shared -Wl,--library-path=/usr/lib/i386-linux-gnu/
+#STD_LIBS		= -lm -ldl -lnsl -lpthread -lstdc++
+
+#-----------------------------------------------------------------------------
+# The End.
+#-----------------------------------------------------------------------------
