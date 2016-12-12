@@ -104,11 +104,11 @@ clean : clean-objs clean-deps
 
 .PHONY : clean-objs
 clean-objs :
-	-find $(BUILD_DIR) -type f | grep "\.o$$" | rm -f
+	-find $(BUILD_DIR) -type f | grep "\.o$$" | xargs rm -f
 
 .PHONY : clean-deps
 clean-deps :
-	-find $(BUILD_DIR) -type f | grep "\.d$$" | rm -f
+	-find $(BUILD_DIR) -type f | grep "\.d$$" | xargs rm -f
 
 .PHONY : clean-out
 clean-out :

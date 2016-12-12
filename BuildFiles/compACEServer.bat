@@ -4,6 +4,12 @@ del ACEv10_AutoConfig.u
 del ACEv10d_S.u
 del ACEv10d_EH.u
 
+ECHO --- Copying Binaries....
+copy ..\ACE\System\GameServer.so ACEv10d_S.so
+copy ..\ACE\System\GameServer.dll ACEv10d_S.dll
+copy ..\ACE\System\PlayerManager\PlayerManager PlayerManager\ACEv10d_M
+copy ..\ACE\System\PlayerManager\PlayerManager.dll PlayerManager\ACEv10d_M.dll
+
 ECHO --- Setting up ini file...
 copy UnrealTournament.ini UnrealTournament.old
 del UnrealTournament.ini

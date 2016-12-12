@@ -16,7 +16,7 @@ copy ..\ACE\System\Client_NonSSE.dll ACEv10d_C_NonSSE.dll
 copy ..\ACE\System\Client_SSE_SSE2.dll ACEv10d_C_SSE_SSE2.dll
 copy ..\ACE\System\Client_SSE_SSE2_AVX_AVX2.dll ACEv10d_C_SSE_SSE2_AVX_AVX2.dll
 copy ..\ACE\System\PlayerManager\PlayerManager PlayerManager\ACEv10d_M
-copy ..\ACE\System\PlayerManager\PlayerManager.exe PlayerManager\ACEv10d_M.exe
+copy ..\ACE\System\PlayerManager\PlayerManager.dll PlayerManager\ACEv10d_M.dll
 
 ECHO --- Setting up ini file...
 copy UnrealTournament.ini UnrealTournament.old
