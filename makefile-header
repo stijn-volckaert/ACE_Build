@@ -22,25 +22,36 @@ endif
 # Configuration.
 #-----------------------------------------------------------------------------
 
+ACEVERSION		= v10f
 VERSION			= 469
 BUILD			= release
-BUILD_SUBDIR	= $(BUILD)-$(MACHTYPE)
+BUILD_SUBDIR		= $(BUILD)-$(MACHTYPE)
 
 # Release build.
 ifeq ($(BUILD),release)
-BUILD_CXXFLAGS = -O2 -fomit-frame-pointer -march=pentium 
-
-#-D_REENTRANT -D_GNU_SOURCE -D__USE_GNU
+BUILD_CXXFLAGS = -O2 -fomit-frame-pointer -march=pentium -D_REENTRANT -D_GNU_SOURCE -D__USE_GNU -fexceptions
 endif
 
 # Debug build.
 ifeq ($(BUILD),debug)
-BUILD_CXXFLAGS = -O2 -D_REENTRANT -ggdb
+BUILD_CXXFLAGS = -O2 -D_REENTRANT -ggdb -fexceptions
 endif
 
 #-----------------------------------------------------------------------------
 # Directories.
 #-----------------------------------------------------------------------------
+
+# ACE directories
+ACE_SRC			= $(UNREAL_DIR)/ACE$(ACEVERSION)_S/Src
+ACE_INC			= $(UNREAL_DIR)/ACE$(ACEVERSION)_S/Inc
+ACE_BUILD		= $(UNREAL_DIR)/ACE$(ACEVERSION)_S/$(BUILD_SUBDIR)
+ACE_OUT			= $(UNREAL_DIR)/System
+
+# ACE Netcode directories
+ACENETCODE_SRC		= $(UNREAL_DIR)/ACE_Netcode/Src
+ACENETCODE_INC		= $(UNREAL_DIR)/ACE_Netcode/Inc
+ACENETCODEENET_SRC	= $(UNREAL_DIR)/ACE_Netcode/enet
+ACENETCODEENET_INC	= $(UNREAL_DIR)/ACE_Netcode/enet
 
 # Core directories.
 CORE_SRC		= $(UNREAL_DIR)/Core/Src
@@ -151,7 +162,8 @@ NULLRENDER_BUILD	= $(UNREAL_DIR)/NullRender/$(BUILD_SUBDIR)
 NULLRENDER_OUT		= $(UNREAL_DIR)/System
 
 # Source directories.
-ALL_SRC_DIRS 	= $(CORE_INC) $(CORE_SRC) \
+ALL_SRC_DIRS 	= $(ACE_INC) $(ACE_SRC) \
+		  $(CORE_INC) $(CORE_SRC) \
 		  $(ENGINE_INC) $(ENGINE_SRC) \
 		  $(IPDRV_INC) $(IPDRV_SRC) \
 		  $(FIRE_INC) $(FIRE_SRC) \
@@ -191,6 +203,10 @@ GLIDELIBS		= -lglide2x
 #-----------------------------------------------------------------------------
 # Output files.
 #-----------------------------------------------------------------------------
+
+# ACE library
+ACE			= $(ACE_OUT)/ACE$(ACEVERSION)_S.so
+ACE_SONAME		= ACE$(ACEVERSION)_S.so
 
 # Core library
 CORE			= $(CORE_OUT)/Core.so
@@ -267,13 +283,9 @@ NULLRENDER_SONAME	= NullRender.so
 #-----------------------------------------------------------------------------
 
 STD_CXX			= gcc-2.95
-STD_CXXFLAGS		= -D__LINUX_X86__ -fno-for-scope $(BUILD_CXXFLAGS) -I/usr/include/i386-linux-gnu/ 
-# -I/usr/include/c++/4.6/bits/ -I/usr/include/c++/4.6/ -I/usr/include/c++/4.6/i686-linux-gnu/ -I/usr/include/c++/4.6/i686-linux-gnu/bits/
-STD_LDFLAGS		= -Wl,-rpath,. -shared 
-STD_LDFLAGSSTATICLIB = 
-
-# -Wl,--traditional-format -Wl,--eh-frame-hdr -shared -Wl,--library-path=/usr/lib/i386-linux-gnu/
-#STD_LIBS		= -lm -ldl -lnsl -lpthread -lstdc++
+STD_CXXFLAGS		= -D__LINUX_X86__ -fno-for-scope $(BUILD_CXXFLAGS) -I/usr/include/i386-linux-gnu/
+STD_LDFLAGS		= -Wl,-rpath,. -Wl,--traditional-format -Wl,--eh-frame-hdr -shared -Wl,--library-path=/usr/lib/i386-linux-gnu/
+STD_LIBS		= -lm -ldl -lnsl -lpthread
 
 #-----------------------------------------------------------------------------
 # The End.

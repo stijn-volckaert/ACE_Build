@@ -99,4 +99,4 @@ replace_version_strings("../ACE#{@aceshortver}_EH/")
 replace_version_strings("../ACE#{@aceshortmajorver}_AutoConfig/") if @newmajor
 replace_version_strings("../IACE#{@aceshortmajorver}/") if @newmajor
 
-
+print("> Don't forget to update ACEInfo!!!\n")
