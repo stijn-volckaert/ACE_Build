@@ -41,9 +41,9 @@ del ACEv10f_C.u
 rename ACEv10f_C_conform.u ACEv10f_C.u
 
 REM ECHO --- Obfuscating Server File...
-REM ..\PortableJava\bin\java -jar AnthObfuscator.jar ACEv10f_S.u -s -o
-REM del ACEv10f_S.u
-REM rename ACEv10f_S_obfuscated.u ACEv10f_S.u
+..\PortableJava\bin\java -jar AnthObfuscator.jar ACEv10f_S.u -s -o
+del ACEv10f_S.u
+rename ACEv10f_S_obfuscated.u ACEv10f_S.u
 
 ECHO --- Restoring ini file...
 del UnrealTournament.ini
