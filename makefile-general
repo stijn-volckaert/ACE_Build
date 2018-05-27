@@ -37,10 +37,10 @@ ifeq ($(USE_DEPENDENCIES),unknown)
 .DEFAULT : usedeps
 .PHONY : usedeps
 usedeps : dirs
-	@$(MAKE) USE_DEPENDENCIES=yes --no-print-directory
+	@$(MAKE) -f $(firstword $(MAKEFILE_LIST)) USE_DEPENDENCIES=yes --no-print-directory
 .PHONY : nodeps
 nodeps : dirs
-	@$(MAKE) USE_DEPENDENCIES=no --no-print-directory
+	@$(MAKE) -f $(firstword $(MAKEFILE_LIST)) USE_DEPENDENCIES=no --no-print-directory
 else
 
 #-----------------------------------------------------------------------------
@@ -67,7 +67,7 @@ $(BUILD_DIR)/%.o : %.cpp
 $(BUILD_DIR)/%.d : %.c
 	@echo Generating dependencies for $(notdir $<)
 	@echo $(@:%.d=%.o) $@ : \\ > $@
-	@$(SHELL) -ec '$(CXX) -MM $(CXXFLAGS) $< | \
+	@$(SHELL) -ec '$(CC) -MM $(CFLAGS) $< | \
 	sed -e '\''s/.*://'\'' >> $@'
 
 # Generate dependencies for a C++ file.

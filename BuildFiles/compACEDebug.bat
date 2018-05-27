@@ -1,18 +1,18 @@
 @ECHO OFF
 ECHO --- Deleting Old Files...
 del ACEv10_AutoConfig.u
-del ACEv10f_C.u
-del ACEv10f_S.u
-del ACEv10f_Cdll.u
-del ACEv10f_EH.u
-del ..\SystemNew\ACEv10f_C.u
-del ..\SystemNew\ACEv10f_Cdll.u
-del ..\SystemNew\ACEv10f_C.dll
+del ACEv10g_C.u
+del ACEv10g_S.u
+del ACEv10g_Cdll.u
+del ACEv10g_EH.u
+del ..\SystemNew\ACEv10g_C.u
+del ..\SystemNew\ACEv10g_Cdll.u
+del ..\SystemNew\ACEv10g_C.dll
 
 ECHO --- Copying Binaries....
-copy ..\ACE\System\ACEv10f_S.dll ACEv10f_S.dll
-copy ..\ACE\System\ACEv10f_C.dll ACEv10f_C_SSE_SSE2_AVX_AVX2.dll
-copy ..\ACE\System\PlayerManager\ACEv10f_M.dll PlayerManager\ACEv10f_M.dll
+copy ..\ACE\System\ACEv10g_S.dll ACEv10g_S.dll
+copy ..\ACE\System\ACEv10g_C.dll ACEv10g_C_SSE_SSE2_AVX_AVX2.dll
+copy ..\ACE\System\PlayerManager\ACEv10g_M.dll PlayerManager\ACEv10g_M.dll
 
 ECHO --- Setting up ini file...
 copy UnrealTournament.ini UnrealTournament.old
@@ -54,11 +54,11 @@ rename UnrealTournament.old UnrealTournament.ini
 ECHO --- Signing Filelist ---
 
 REM Delete old ACE files
-ACESign.exe -r ACEFileList.txt ACEv10f_C.u
-ACESign.exe -r ACEFileList.txt ACEv10f_C.dll
+ACESign.exe -r ACEFileList.txt ACEv10g_C.u
+ACESign.exe -r ACEFileList.txt ACEv10g_C.dll
 
 REM Add new ACE files
-ACESign.exe -a ACEFileList.txt ACEv10f_C_NonSSE.dll ACEv10f_C.dll "ACE v1.0f for UT"
-ACESign.exe -a ACEFileList.txt ACEv10f_C_SSE_SSE2.dll ACEv10f_C.dll "ACE v1.0f for UT"
-ACESign.exe -a ACEFileList.txt ACEv10f_C_SSE_SSE2_AVX_AVX2.dll ACEv10f_C.dll "ACE v1.0f for UT"
-ACESign.exe -a ACEFileList.txt ACEv10f_C.u ACEv10f_C.u "ACE v1.0f for UT"
+ACESign.exe -a ACEFileList.txt ACEv10g_C_NonSSE.dll ACEv10g_C.dll "ACE v1.0g for UT"
+ACESign.exe -a ACEFileList.txt ACEv10g_C_SSE_SSE2.dll ACEv10g_C.dll "ACE v1.0g for UT"
+ACESign.exe -a ACEFileList.txt ACEv10g_C_SSE_SSE2_AVX_AVX2.dll ACEv10g_C.dll "ACE v1.0g for UT"
+ACESign.exe -a ACEFileList.txt ACEv10g_C.u ACEv10g_C.u "ACE v1.0g for UT"
