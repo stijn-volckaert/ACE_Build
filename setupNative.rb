@@ -60,8 +60,10 @@ replace_version_strings("./GameServer/Inc/")
 replace_version_strings("./PlayerManager/Src/")
 replace_version_strings("./PlayerManager/Inc/")
 
-
-
-
-
-
+print("Don't forget to manually edit these files:")
+print("> GameServer/GameServer.vcxproj")
+print("> GameServer/Src/makefile-release")
+print("> GameServer/Src/makefile-debug")
+print("> Client/Client.vcxproj")
+print("> PlayerManager/PlayerManager.vcxproj")
+print("> makefile-header")
