@@ -18,8 +18,9 @@ end
 def replace_version_strings(folder)
   Dir.glob("#{folder}/**/*.{cpp,c,h}") { |filename|
     out=""
-    File.open(filename, 'r+') { |file|
+    File.open(filename, "r+:UTF-8") { |file|
       file.each { |line|
+        line = line.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
         out << fixup(line)
       }
       file.pos=0
@@ -60,10 +61,10 @@ replace_version_strings("./GameServer/Inc/")
 replace_version_strings("./PlayerManager/Src/")
 replace_version_strings("./PlayerManager/Inc/")
 
-print("Don't forget to manually edit these files:")
-print("> GameServer/GameServer.vcxproj")
-print("> GameServer/Src/makefile-release")
-print("> GameServer/Src/makefile-debug")
-print("> Client/Client.vcxproj")
-print("> PlayerManager/PlayerManager.vcxproj")
-print("> makefile-header")
+print("Don't forget to manually edit these files:\n")
+print("> GameServer/GameServer.vcxproj\n")
+print("> GameServer/Src/makefile-release\n")
+print("> GameServer/Src/makefile-debug\n")
+print("> Client/Client.vcxproj\n")
+print("> PlayerManager/PlayerManager.vcxproj\n")
+print("> makefile-header\n")
