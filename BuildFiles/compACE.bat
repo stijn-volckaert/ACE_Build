@@ -1,22 +1,22 @@
 @ECHO OFF
 ECHO --- Deleting Old Files...
 del ACEv11_AutoConfig.u
-del ACEv11c_C.u
-del ACEv11c_S.u
-del ACEv11c_Cdll.u
-del ACEv11c_EH.u
-del ..\SystemNew\ACEv11c_C.u
-del ..\SystemNew\ACEv11c_Cdll.u
-del ..\SystemNew\ACEv11c_C.dll
+del ACEv11d_C.u
+del ACEv11d_S.u
+del ACEv11d_Cdll.u
+del ACEv11d_EH.u
+del ..\SystemNew\ACEv11d_C.u
+del ..\SystemNew\ACEv11d_Cdll.u
+del ..\SystemNew\ACEv11d_C.dll
 
 ECHO --- Copying Binaries....
-copy ..\ACE\System\GameServer.so ACEv11c_S.so
-copy ..\ACE\System\GameServer.dll ACEv11c_S.dll
-copy ..\ACE\System\Client_NonSSE.dll ACEv11c_C_NonSSE.dll
-copy ..\ACE\System\Client_SSE_SSE2.dll ACEv11c_C_SSE_SSE2.dll
-copy ..\ACE\System\Client_SSE_SSE2_AVX_AVX2.dll ACEv11c_C_SSE_SSE2_AVX_AVX2.dll
-copy ..\ACE\System\PlayerManager\PlayerManager PlayerManager\ACEv11c_M
-copy ..\ACE\System\PlayerManager\PlayerManager.dll PlayerManager\ACEv11c_M.dll
+copy ..\ACE\System\GameServer.so ACEv11d_S.so
+copy ..\ACE\System\GameServer.dll ACEv11d_S.dll
+copy ..\ACE\System\Client_NonSSE.dll ACEv11d_C_NonSSE.dll
+copy ..\ACE\System\Client_SSE_SSE2.dll ACEv11d_C_SSE_SSE2.dll
+copy ..\ACE\System\Client_SSE_SSE2_AVX_AVX2.dll ACEv11d_C_SSE_SSE2_AVX_AVX2.dll
+copy ..\ACE\System\PlayerManager\PlayerManager PlayerManager\ACEv11d_M
+copy ..\ACE\System\PlayerManager\PlayerManager.dll PlayerManager\ACEv11d_M.dll
 
 ECHO --- Setting up ini file...
 copy UnrealTournament.ini UnrealTournament.old
@@ -61,14 +61,14 @@ ECHO --- Compiling Main Packages...
 ucc make -nobind
 
 ECHO --- Obfuscating/Reflagging Client File...
-..\PortableJava\bin\java -jar AnthObfuscator.jar ACEv11c_C.u -s -n -o
-del ACEv11c_C.u
-rename ACEv11c_C_obfuscated.u ACEv11c_C.u
+..\PortableJava\bin\java -jar AnthObfuscator.jar ACEv11d_C.u -s -n -o
+del ACEv11d_C.u
+rename ACEv11d_C_obfuscated.u ACEv11d_C.u
 
 ECHO --- Obfuscating Server File...
-..\PortableJava\bin\java -jar AnthObfuscator.jar ACEv11c_S.u -s -o
-del ACEv11c_S.u
-rename ACEv11c_S_obfuscated.u ACEv11c_S.u
+..\PortableJava\bin\java -jar AnthObfuscator.jar ACEv11d_S.u -s -o
+del ACEv11d_S.u
+rename ACEv11d_S_obfuscated.u ACEv11d_S.u
 
 ECHO --- Restoring ini file...
 del UnrealTournament.ini
@@ -79,14 +79,14 @@ rename DeusEx.old DeusEx.ini
 ECHO --- Signing Filelist ---
 
 REM Delete old ACE files
-ACESign.exe -r ACEFileList.txt ACEv11c_C.u
-ACESign.exe -r ACEFileList.txt ACEv11c_C.dll
+ACESign.exe -r ACEFileList.txt ACEv11d_C.u
+ACESign.exe -r ACEFileList.txt ACEv11d_C.dll
 
 REM Add new ACE files
-ACESign.exe -a ACEFileList.txt ACEv11c_C_NonSSE.dll ACEv11c_C.dll "ACE v1.1c for UEngine 1"
-ACESign.exe -a ACEFileList.txt ACEv11c_C_SSE_SSE2.dll ACEv11c_C.dll "ACE v1.1c for UEngine 1"
-ACESign.exe -a ACEFileList.txt ACEv11c_C_SSE_SSE2_AVX_AVX2.dll ACEv11c_C.dll "ACE v1.1c for UEngine 1"
-ACESign.exe -a ACEFileList.txt ACEv11c_C.u ACEv11c_C.u "ACE v1.1c for UEngine 1"
+ACESign.exe -a ACEFileList.txt ACEv11d_C_NonSSE.dll ACEv11d_C.dll "ACE v1.1d for UEngine 1"
+ACESign.exe -a ACEFileList.txt ACEv11d_C_SSE_SSE2.dll ACEv11d_C.dll "ACE v1.1d for UEngine 1"
+ACESign.exe -a ACEFileList.txt ACEv11d_C_SSE_SSE2_AVX_AVX2.dll ACEv11d_C.dll "ACE v1.1d for UEngine 1"
+ACESign.exe -a ACEFileList.txt ACEv11d_C.u ACEv11d_C.u "ACE v1.1d for UEngine 1"
 
 REM Sign the list
 ACESign.exe -s anthmasterkey.dat ACEFileList.txt
