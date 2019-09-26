@@ -22,7 +22,7 @@ endif
 # Configuration.
 #-----------------------------------------------------------------------------
 
-ACEVERSION		= v11d
+ACEVERSION		= v11e
 VERSION			= 469
 BUILD			= release
 BUILD_SUBDIR		= $(BUILD)-$(MACHTYPE)
