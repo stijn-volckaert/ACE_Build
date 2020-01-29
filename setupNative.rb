@@ -63,6 +63,5 @@ replace_version_strings("./PlayerManager/Inc/")
 
 print("Don't forget to manually edit these files:\n")
 print("> GameServer/GameServer.vcxproj\n")
-print("> GameServer/CMakeLists.txt\n")
 print("> Client/Client.vcxproj\n")
 print("> PlayerManager/PlayerManager.vcxproj\n")

@@ -23,51 +23,39 @@ REM copy ..\ACE\System\ACEv12a_S.dll ACEv12a_S.dll
 copy ACEv12a_C.dll ACEv12a_C_NonSSE.dll
 copy ACEv12a_C.dll ACEv12a_C_SSE_SSE2.dll
 copy ACEv12a_C.dll ACEv12a_C_SSE_SSE2_AVX_AVX2.dll
-REM copy ..\ACE\System\PlayerManager\ACEv12a_M.dll PlayerManager\ACEv12a_M.dll
 
 ECHO --- Setting up ini file...
 copy UnrealTournament.ini UnrealTournament.old
-copy DeusEx.ini DeusEx.old
 del UnrealTournament.ini
-del DeusEx.ini
 
 ECHO --- Compiling ACE Interface...
 copy compACEInterface.ini UnrealTournament.ini
-copy compACEInterfaceDX.ini DeusEx.ini
 ucc make -bytehax
 
 ECHO --- Switching ini file...
 del UnrealTournament.ini
-del DeusEx.ini
 copy compACEEH.ini UnrealTournament.ini
-copy compACEEHDX.ini DeusEx.ini
 
 ECHO --- Compiling ACE EventHandler...
 ucc make
 
 ECHO --- Switching ini file...
 del UnrealTournament.ini
-del DeusEx.ini
 copy compACEAC.ini UnrealTournament.ini
-copy compACEACDX.ini DeusEx.ini
 
 ECHO --- Compiling ACE AutoConfig...
 ucc make
 
 ECHO --- Switching ini file...
 del UnrealTournament.ini
-del DeusEx.ini
 copy compACE.ini UnrealTournament.ini
-copy compACEDX.ini DeusEx.ini
 
 ECHO --- Compiling Main Packages...
 ucc make -nobind
 
 ECHO --- Restoring ini file...
 del UnrealTournament.ini
-del DeusEx.ini
 rename UnrealTournament.old UnrealTournament.ini
-rename DeusEx.old DeusEx.ini
 
 ECHO --- Signing Filelist ---
 
