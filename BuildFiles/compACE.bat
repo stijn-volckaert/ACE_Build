@@ -5,6 +5,7 @@ del ACEv12a_C.u
 del ACEv12a_S.u
 del ACEv12a_Cdll.u
 del ACEv12a_EH.u
+del ACEv12a_C.dll
 del ..\SystemNew\ACEv12a_C.u
 del ..\SystemNew\ACEv12a_Cdll.u
 del ..\SystemNew\ACEv12a_C.dll
