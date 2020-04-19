@@ -1,28 +1,28 @@
 @ECHO OFF
 ECHO --- Deleting Old Files...
 del ACEv12_AutoConfig.u
-del ACEv12a_C.u
-del ACEv12a_S.u
-del ACEv12a_Cdll.u
-del ACEv12a_EH.u
-del ..\SystemNew\ACEv12a_C.u
-del ..\SystemNew\ACEv12a_Cdll.u
-del ..\SystemNew\ACEv12a_C.dll
-del ..\..\utpg\SystemTest\ACEv12a_C.u
-del ..\..\utpg\SystemTest\ACEv12a_Cdll.u
-del ..\..\utpg\SystemTest\ACEv12a_C.dll
-del ..\..\UnrealTournament436\SystemXC\ACEv12a_C.u
-del ..\..\UnrealTournament436\SystemXC\ACEv12a_Cdll.u
-del ..\..\UnrealTournament436\SystemXC\ACEv12a_C.dll
-del ..\..\UnrealTournament436\SystemNew\ACEv12a_C.u
-del ..\..\UnrealTournament436\SystemNew\ACEv12a_C.dll
-del ..\..\UnrealTournament436\SystemNew\ACEv12a_Cdll.u
+del ACEv12b_C.u
+del ACEv12b_S.u
+del ACEv12b_Cdll.u
+del ACEv12b_EH.u
+del ..\SystemNew\ACEv12b_C.u
+del ..\SystemNew\ACEv12b_Cdll.u
+del ..\SystemNew\ACEv12b_C.dll
+del ..\..\utpg\SystemTest\ACEv12b_C.u
+del ..\..\utpg\SystemTest\ACEv12b_Cdll.u
+del ..\..\utpg\SystemTest\ACEv12b_C.dll
+del ..\..\UnrealTournament436\SystemXC\ACEv12b_C.u
+del ..\..\UnrealTournament436\SystemXC\ACEv12b_Cdll.u
+del ..\..\UnrealTournament436\SystemXC\ACEv12b_C.dll
+del ..\..\UnrealTournament436\SystemNew\ACEv12b_C.u
+del ..\..\UnrealTournament436\SystemNew\ACEv12b_C.dll
+del ..\..\UnrealTournament436\SystemNew\ACEv12b_Cdll.u
 
 ECHO --- Copying Binaries....
-REM copy ..\ACE\System\ACEv12a_S.dll ACEv12a_S.dll
-copy ACEv12a_C.dll ACEv12a_C_NonSSE.dll
-copy ACEv12a_C.dll ACEv12a_C_SSE_SSE2.dll
-copy ACEv12a_C.dll ACEv12a_C_SSE_SSE2_AVX_AVX2.dll
+REM copy ..\ACE\System\ACEv12b_S.dll ACEv12b_S.dll
+copy ACEv12b_C.dll ACEv12b_C_NonSSE.dll
+copy ACEv12b_C.dll ACEv12b_C_SSE_SSE2.dll
+copy ACEv12b_C.dll ACEv12b_C_SSE_SSE2_AVX_AVX2.dll
 
 ECHO --- Setting up ini file...
 copy UnrealTournament.ini UnrealTournament.old
@@ -60,11 +60,11 @@ rename UnrealTournament.old UnrealTournament.ini
 ECHO --- Signing Filelist ---
 
 REM Delete old ACE files
-ACESign.exe -r ACEFileList.txt ACEv12a_C.u
-ACESign.exe -r ACEFileList.txt ACEv12a_C.dll
+ACESign.exe -r ACEFileList.txt ACEv12b_C.u
+ACESign.exe -r ACEFileList.txt ACEv12b_C.dll
 
 REM Add new ACE files
-ACESign.exe -a ACEFileList.txt ACEv12a_C_NonSSE.dll ACEv12a_C.dll "ACE v1.2a for UEngine 1"
-ACESign.exe -a ACEFileList.txt ACEv12a_C_SSE_SSE2.dll ACEv12a_C.dll "ACE v1.2a for UEngine 1"
-ACESign.exe -a ACEFileList.txt ACEv12a_C_SSE_SSE2_AVX_AVX2.dll ACEv12a_C.dll "ACE v1.2a for UEngine 1"
-ACESign.exe -a ACEFileList.txt ACEv12a_C.u ACEv12a_C.u "ACE v1.2a for UEngine 1"
+ACESign.exe -a ACEFileList.txt ACEv12b_C_NonSSE.dll ACEv12b_C.dll "ACE v1.2b for UEngine 1"
+ACESign.exe -a ACEFileList.txt ACEv12b_C_SSE_SSE2.dll ACEv12b_C.dll "ACE v1.2b for UEngine 1"
+ACESign.exe -a ACEFileList.txt ACEv12b_C_SSE_SSE2_AVX_AVX2.dll ACEv12b_C.dll "ACE v1.2b for UEngine 1"
+ACESign.exe -a ACEFileList.txt ACEv12b_C.u ACEv12b_C.u "ACE v1.2b for UEngine 1"
