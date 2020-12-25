@@ -1,0 +1,19 @@
+[submodule "Common"]
+	path = Common
+	url = git@github.com:stijn-volckaert/ACE_Common
+
+[submodule "AutoConfig"]
+	path = AutoConfig
+	url = git@github.com:stijn-volckaert/ACE_AutoConfig
+
+[submodule "Client"]
+	path = Client
+	url = git@github.com:stijn-volckaert/ACE_Client
+
+[submodule "GameServer"]
+	path = GameServer
+	url = git@github.com:stijn-volckaert/ACE_Server
+
+[submodule "Interface"]
+	path = Interface
+	url = git@github.com:stijn-volckaert/IACE
