@@ -51,7 +51,7 @@ del UnrealTournament.ini
 copy compACE.ini UnrealTournament.ini
 
 ECHO --- Compiling Main Packages...
-ucc make -nobind
+ucc make -nobind -bytehax
 
 ECHO --- Restoring ini file...
 del UnrealTournament.ini

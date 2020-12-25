@@ -34,7 +34,7 @@ ucc make -nobind
 ECHO --- Conforming Client...
 del ACEv12e_S.u
 ucc conform ACEv12e_C.u ACEv12e_C_conform.u
-ucc make -nobind
+ucc make -nobind -bytehax
 del ACEv12e_C.u
 rename ACEv12e_C_conform.u ACEv12e_C.u
 

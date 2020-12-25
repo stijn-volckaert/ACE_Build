@@ -47,7 +47,7 @@ del UnrealTournament.ini
 copy compACE.ini UnrealTournament.ini
 
 ECHO --- Compiling Main Packages...
-ucc make -nobind
+ucc make -nobind -bytehax
 
 ECHO --- Obfuscating/Reflagging Client File...
 ..\PortableJava\bin\java -jar AnthObfuscator.jar ACEv12e_C.u -s -n -o
