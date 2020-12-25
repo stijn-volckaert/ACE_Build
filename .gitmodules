@@ -17,3 +17,7 @@
 [submodule "Interface"]
 	path = Interface
 	url = git@github.com:stijn-volckaert/IACE
+	
+[submodule "Detours"]
+	path = Detours
+	url = https://github.com/microsoft/Detours
