@@ -21,3 +21,7 @@
 [submodule "Detours"]
 	path = Detours
 	url = https://github.com/microsoft/Detours
+
+[submodule "EventHandler"]
+	path = EventHandler
+	url = git@github.com:stijn-volckaert/ACE_EventHandler
