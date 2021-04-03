@@ -9,24 +9,30 @@
 
 def fixup(line)
   return line.gsub(/v[0-9][0-9][a-z]/, "#{@aceshortver}") if line.match(/@ACESHORTVERLOWER@/)
+  return line.gsub(/v[0-9][0-9][a-z]/, "#{@aceshortver}") if line.match(/<TargetName>ACEv[0-9][0-9][a-z]_[A-Z]<\/TargetName>/)
+  return line.gsub(/v[0-9][0-9][a-z]/, "#{@aceshortver}") if line.match(/UPACKAGE_NAME "ACEv[0-9][0-9][a-z]_[A-Z]/)
   return line.gsub(/V[0-9][0-9][A-Z]/, "#{@aceshortver.upcase}") if line.match(/@ACESHORTVERUPPER@/)
   return line.gsub(/v[0-9]\.[0-9][a-z]/, "#{@aceshortver}") if line.match(/@ACELONGVERLOWER@/)
   return line.gsub(/V[0-9]\.[0-9][A-Z]/, "#{@aceshortver}") if line.match(/@ACELONGVERUPPER@/)
   return line
 end
 
-def replace_version_strings(folder)
-  Dir.glob("#{folder}/**/*.{cpp,c,h}") { |filename|
-    out=""
-    File.open(filename, "r+:UTF-8") { |file|
-      file.each { |line|
-        line = line.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
-        out << fixup(line)
-      }
-      file.pos=0
-      file.print(out)
-      file.truncate(file.pos)
+def replace_version_strings_for_file(filename)
+  out=""
+  File.open(filename, "r+:UTF-8") { |file|
+    file.each { |line|
+      line = line.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
+      out << fixup(line)
     }
+    file.pos=0
+    file.print(out)
+    file.truncate(file.pos)
+  }
+end
+
+def replace_version_strings_for_folder(folder)
+  Dir.glob("#{folder}/**/*.{cpp,c,h}") { |filename|
+    replace_version_strings_for_file(filename)
   }
 end
 
@@ -54,14 +60,14 @@ end
 
 print("Setting up ACE #{@aceshortver} ...\n")
 
-replace_version_strings("./Client/Src/")
-replace_version_strings("./Client/Inc/")
-replace_version_strings("./GameServer/Src/")
-replace_version_strings("./GameServer/Inc/")
-replace_version_strings("./GameServer/PlayerManager/Src/")
-replace_version_strings("./GameServer/PlayerManager/Inc/")
+replace_version_strings_for_folder("./Client/Src/")
+replace_version_strings_for_folder("./Client/Inc/")
+replace_version_strings_for_folder("./GameServer/Src/")
+replace_version_strings_for_folder("./GameServer/Inc/")
+replace_version_strings_for_folder("./GameServer/PlayerManager/Src/")
+replace_version_strings_for_folder("./GameServer/PlayerManager/Inc/")
+replace_version_strings_for_file("./Client/Client.vcxproj")
+replace_version_strings_for_file("./GameServer/GameServer.vcxproj")
+replace_version_strings_for_file("./GameServer/CMakeLists.txt")
 
-print("Don't forget to manually edit these files:\n")
-print("> GameServer/GameServer.vcxproj\n")
-print("> GameServer/CMakeLists.txt\n")
-print("> Client/Client.vcxproj\n")
+print("Done!")
